@@ -1,11 +1,12 @@
-import './index.scss';
+import 'normalize.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory, IndexRoute, IndexRedirect } from 'react-router';
 import store from './store';
-import { Main, Login, Signup, UserHome, LoginHome } from './components';
+import { Main, UserHome } from './components';
+import { Login, Signup, LoginHome } from './components/Auth';
 import { me, fetchUser } from './redux/user';
 
 const whoAmI = store.dispatch(me());
@@ -33,7 +34,6 @@ ReactDOM.render(
         <IndexRoute component={Main} />
           <Route onEnter={requireLogin}>
             <Route path="home" component={UserHome} />
-            <Route path="history" onEnter={loadHistory} component={History} />
           </Route>
           <Route path="loginHome" component={ LoginHome } />
           <Route path="login" component={Login} />
